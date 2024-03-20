@@ -1,0 +1,97 @@
+import java.util.*;
+
+// Define classes for flights and hotels
+class Flight {
+    private String flightNumber;
+    private String origin;
+    private String destination;
+    private Date departureDate;
+    private Date arrivalDate;
+    // Other flight details
+
+    // Constructor, getters, and setters
+}
+
+class Hotel {
+    private String name;
+    private String location;
+    private int availableRooms;
+    private double pricePerNight;
+    // Other hotel details
+
+    // Constructor, getters, and setters
+}
+
+// Class for managing booking operations
+class BookingSystem {
+    private List<Flight> flights;
+    private List<Hotel> hotels;
+
+    public BookingSystem() {
+        // Initialize flights and hotels (can be done through a database or hardcoding)
+        flights = new ArrayList<>();
+        hotels = new ArrayList<>();
+        // Populate flights and hotels data
+    }
+
+    // Method to search and book flights
+    public List<Flight> searchAndBookFlights(String origin, String destination, Date departureDate, int passengers) {
+        List<Flight> availableFlights = new ArrayList<>();
+        // Logic to search available flights based on origin, destination, departure date, and number of passengers
+        // This logic could involve querying a database or external API
+        // For simplicity, assume the data is already available
+        for (Flight flight : flights) {
+            if (flight.getOrigin().equals(origin) && flight.getDestination().equals(destination)
+                    && flight.getDepartureDate().equals(departureDate)) {
+                availableFlights.add(flight);
+            }
+        }
+        return availableFlights;
+    }
+
+    // Method to search and book hotels
+    public List<Hotel> searchAndBookHotels(String location, Date checkInDate, Date checkOutDate, int rooms) {
+        List<Hotel> availableHotels = new ArrayList<>();
+        // Logic to search available hotels based on location, check-in/out dates, and number of rooms
+        // Similar to flight search logic, this could involve querying a database or external API
+        // For simplicity, assume the data is already available
+        for (Hotel hotel : hotels) {
+            if (hotel.getLocation().equals(location) && hotel.getAvailableRooms() >= rooms) {
+                availableHotels.add(hotel);
+            }
+        }
+        return availableHotels;
+    }
+
+    // Method to make a booking (not implemented for brevity)
+    public void makeBooking(/* Parameters */) {
+        // Logic to finalize and confirm booking
+    }
+}
+
+// Main class to test the booking system
+public class TravelBookingSystem {
+    public static void main(String[] args) {
+        BookingSystem bookingSystem = new BookingSystem();
+
+        // Example: Searching and booking flights
+        List<Flight> availableFlights = bookingSystem.searchAndBookFlights("New York", "Los Angeles", new Date(), 2);
+        if (!availableFlights.isEmpty()) {
+            // Book the first available flight (for simplicity)
+            bookingSystem.makeBooking(/* Parameters */);
+            System.out.println("Flight booked successfully!");
+        } else {
+            System.out.println("No flights available for the selected criteria.");
+        }
+
+        // Example: Searching and booking hotels
+        List<Hotel> availableHotels = bookingSystem.searchAndBookHotels("Los Angeles", new Date(), new Date(), 1);
+        if (!availableHotels.isEmpty()) {
+            // Book the first available hotel (for simplicity)
+            bookingSystem.makeBooking(/* Parameters */);
+            System.out.println("Hotel booked successfully!");
+        } else {
+            System.out.println("No hotels available for the selected criteria.");
+        }
+    }
+}
